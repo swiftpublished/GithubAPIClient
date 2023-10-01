@@ -8,29 +8,76 @@
 import XCTest
 @testable import GithubAPIClient
 
-final class GithubAPIClientTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+@MainActor
+final class GitHubApiClientTests: XCTestCase {
+    func testReposSuccessResponse() async throws {
+        let repo = Repository(
+            id: 1,
+            name: "name 1",
+            owner: .init(login: "login 1", avatarURL: "avatarURL 1"),
+            description: "description 1",
+            language: "language 1",
+            numberOfStars: 1,
+            numberOfForks: 1,
+            isStarred: false
+        )
+        let store = TestStore(initialState: RepositoryListFeature.State()) {
+            RepositoryListFeature()
+        } withDependencies: { dependencies in
+            dependencies.repositoryClient.repos = { [repo] }
+        }
+        
+        await store.send(.fetchRepos)
+        
+        await store.receive(.reposResponse(.success([repo]))) { state in
+            state.isLoading = false
+            state.repos = [
+                RepositoryRowFeature.State(repo: repo)
+            ]
         }
     }
-
+    
+    func testReposFailureResponse() async throws {
+        struct RepoError: LocalizedError, Equatable {
+            var errorDescription: String? { "Test Failure" }
+        }
+        
+        let error = RepoError()
+        let store = TestStore(initialState: RepositoryListFeature.State()) {
+            RepositoryListFeature()
+        } withDependencies: { dependencies in
+            dependencies.repositoryClient.repos = { throw RepoError() }
+        }
+        
+        await store.send(.fetchRepos)
+        
+        await store.receive(.reposResponse(.failure(error))) { state in
+            state.isLoading = false
+            state.errorMessage = "Test Failure"
+        }
+    }
+    
+    func testStarringRepo() async throws {
+        let repo = Repository(
+            id: 1,
+            name: "name",
+            owner: Owner(login: "login", avatarURL: "avatarURL"),
+            description: "description",
+            language: "language",
+            numberOfStars: 1,
+            numberOfForks: 1,
+            isStarred: false
+        )
+        let repos: IdentifiedArrayOf<RepositoryRowFeature.State> = [
+            RepositoryRowFeature.State(repo: repo)
+        ]
+        let store = TestStore(initialState: RepositoryListFeature.State(repos: repos)) {
+            RepositoryListFeature()
+        }
+        
+        let id = repo.id
+        await store.send(.repo(id: id, action: .starButtonTapped)) { state in
+            state.repos[id: id]?.repo.isStarred = true
+        }
+    }
 }
