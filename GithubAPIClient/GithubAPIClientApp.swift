@@ -11,7 +11,8 @@ import SwiftUI
 struct GithubAPIClientApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            /// Vanilla SwiftUI
+            Root(model: .init())
         }
     }
 }
