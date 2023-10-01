@@ -12,7 +12,16 @@ struct GithubAPIClientApp: App {
     var body: some Scene {
         WindowGroup {
             /// Vanilla SwiftUI
-            Root(model: .init())
+//            Root(model: .init())
+            
+            /// TCA SwiftUI
+            if !_XCTIsTesting {
+                Root(
+                    store: Store(initialState: AppFeature.State()) {
+                        AppFeature()
+                    }
+                )
+            }
         }
     }
 }

@@ -36,6 +36,15 @@
 		0BAEE6622AC9A83200CEF366 /* TCASwiftUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0BAEE65B2AC9A83200CEF366 /* TCASwiftUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0BAEE6672AC9A84900CEF366 /* Exports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAEE6662AC9A84900CEF366 /* Exports.swift */; };
 		0BAEE66A2AC9A8E300CEF366 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 0BAEE6692AC9A8E300CEF366 /* ComposableArchitecture */; };
+		0BAEE66C2AC9A95B00CEF366 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAEE66B2AC9A95B00CEF366 /* Root.swift */; };
+		0BAEE66E2AC9A98100CEF366 /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAEE66D2AC9A98100CEF366 /* AppFeature.swift */; };
+		0BAEE6702AC9A9A800CEF366 /* RepositoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAEE66F2AC9A9A800CEF366 /* RepositoryList.swift */; };
+		0BAEE6722AC9A9E400CEF366 /* RepositoryListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAEE6712AC9A9E400CEF366 /* RepositoryListFeature.swift */; };
+		0BAEE6742AC9A9F600CEF366 /* RepositoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAEE6732AC9A9F600CEF366 /* RepositoryRow.swift */; };
+		0BAEE6762AC9AA0A00CEF366 /* RepositoryRowFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAEE6752AC9AA0A00CEF366 /* RepositoryRowFeature.swift */; };
+		0BAEE6782AC9AA1A00CEF366 /* RepositoryDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAEE6772AC9AA1A00CEF366 /* RepositoryDetail.swift */; };
+		0BAEE67A2AC9AA2F00CEF366 /* RepositoryDetailFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAEE6792AC9AA2F00CEF366 /* RepositoryDetailFeature.swift */; };
+		0BAEE67C2AC9AA3E00CEF366 /* RepositoryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAEE67B2AC9AA3E00CEF366 /* RepositoryClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +146,15 @@
 		0BAEE65B2AC9A83200CEF366 /* TCASwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TCASwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BAEE65D2AC9A83200CEF366 /* TCASwiftUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCASwiftUI.h; sourceTree = "<group>"; };
 		0BAEE6662AC9A84900CEF366 /* Exports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exports.swift; sourceTree = "<group>"; };
+		0BAEE66B2AC9A95B00CEF366 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
+		0BAEE66D2AC9A98100CEF366 /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
+		0BAEE66F2AC9A9A800CEF366 /* RepositoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryList.swift; sourceTree = "<group>"; };
+		0BAEE6712AC9A9E400CEF366 /* RepositoryListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListFeature.swift; sourceTree = "<group>"; };
+		0BAEE6732AC9A9F600CEF366 /* RepositoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRow.swift; sourceTree = "<group>"; };
+		0BAEE6752AC9AA0A00CEF366 /* RepositoryRowFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRowFeature.swift; sourceTree = "<group>"; };
+		0BAEE6772AC9AA1A00CEF366 /* RepositoryDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetail.swift; sourceTree = "<group>"; };
+		0BAEE6792AC9AA2F00CEF366 /* RepositoryDetailFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailFeature.swift; sourceTree = "<group>"; };
+		0BAEE67B2AC9AA3E00CEF366 /* RepositoryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,8 +340,57 @@
 			children = (
 				0BAEE65D2AC9A83200CEF366 /* TCASwiftUI.h */,
 				0BAEE6662AC9A84900CEF366 /* Exports.swift */,
+				0BAEE6812AC9AA9D00CEF366 /* App */,
+				0BAEE6822AC9AAAC00CEF366 /* RepositoryList */,
+				0BAEE67F2AC9AA7800CEF366 /* RepositoryRow */,
+				0BAEE67E2AC9AA7100CEF366 /* RepositoryDetail */,
+				0BAEE67D2AC9AA6200CEF366 /* Clients */,
 			);
 			path = TCASwiftUI;
+			sourceTree = "<group>";
+		};
+		0BAEE67D2AC9AA6200CEF366 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				0BAEE67B2AC9AA3E00CEF366 /* RepositoryClient.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		0BAEE67E2AC9AA7100CEF366 /* RepositoryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				0BAEE6772AC9AA1A00CEF366 /* RepositoryDetail.swift */,
+				0BAEE6792AC9AA2F00CEF366 /* RepositoryDetailFeature.swift */,
+			);
+			path = RepositoryDetail;
+			sourceTree = "<group>";
+		};
+		0BAEE67F2AC9AA7800CEF366 /* RepositoryRow */ = {
+			isa = PBXGroup;
+			children = (
+				0BAEE6732AC9A9F600CEF366 /* RepositoryRow.swift */,
+				0BAEE6752AC9AA0A00CEF366 /* RepositoryRowFeature.swift */,
+			);
+			name = RepositoryRow;
+			sourceTree = "<group>";
+		};
+		0BAEE6812AC9AA9D00CEF366 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0BAEE66B2AC9A95B00CEF366 /* Root.swift */,
+				0BAEE66D2AC9A98100CEF366 /* AppFeature.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		0BAEE6822AC9AAAC00CEF366 /* RepositoryList */ = {
+			isa = PBXGroup;
+			children = (
+				0BAEE66F2AC9A9A800CEF366 /* RepositoryList.swift */,
+				0BAEE6712AC9A9E400CEF366 /* RepositoryListFeature.swift */,
+			);
+			path = RepositoryList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -634,7 +701,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BAEE67A2AC9AA2F00CEF366 /* RepositoryDetailFeature.swift in Sources */,
+				0BAEE6742AC9A9F600CEF366 /* RepositoryRow.swift in Sources */,
+				0BAEE66E2AC9A98100CEF366 /* AppFeature.swift in Sources */,
+				0BAEE6722AC9A9E400CEF366 /* RepositoryListFeature.swift in Sources */,
 				0BAEE6672AC9A84900CEF366 /* Exports.swift in Sources */,
+				0BAEE6782AC9AA1A00CEF366 /* RepositoryDetail.swift in Sources */,
+				0BAEE67C2AC9AA3E00CEF366 /* RepositoryClient.swift in Sources */,
+				0BAEE66C2AC9A95B00CEF366 /* Root.swift in Sources */,
+				0BAEE6702AC9A9A800CEF366 /* RepositoryList.swift in Sources */,
+				0BAEE6762AC9AA0A00CEF366 /* RepositoryRowFeature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1079,6 +1155,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1113,6 +1190,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

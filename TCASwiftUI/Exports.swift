@@ -7,3 +7,4 @@
 
 @_exported import SwiftUI
 @_exported import Core
+@_exported import ComposableArchitecture
