@@ -5,7 +5,9 @@
 //  Created by Muralidharan Kathiresan on 01/10/23.
 //
 
-public struct AppFeature: Reducer {
+@Reducer
+public struct AppFeature {
+    @ObservableState
     public struct State: Equatable {
         var path: StackState<Path.State>
         public var repositoryList: RepositoryListFeature.State
@@ -52,7 +54,7 @@ public struct AppFeature: Reducer {
                 return .none
             }
         }
-        .forEach(\.path, action: /Action.path) {
+        .forEach(\.path, action: \.path) {
             Path()
         }
     }

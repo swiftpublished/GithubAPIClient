@@ -16,7 +16,7 @@ public struct Root: View {
         NavigationStackStore(
             store.scope(
                 state: \.path,
-                action: { .path($0) }
+                action: \.path
             )
         ) {
             RepositoryList(
