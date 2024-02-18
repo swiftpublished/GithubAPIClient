@@ -13,15 +13,15 @@ public struct RepositoryRow: View {
     }
     
     public var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
+        WithPerceptionTracking {
             NavigationLink(
                 state: AppFeature.Path.State.repositoryDetail(
-                    RepositoryDetailFeature.State(repo: viewStore.repo)
+                    RepositoryDetailFeature.State(repo: store.repo)
                 )
             ) {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(spacing: 8) {
-                        AsyncImage(url: URL(string: viewStore.repo.owner.avatarURL)) { image in
+                        AsyncImage(url: URL(string: store.repo.owner.avatarURL)) { image in
                             image
                                 .resizable()
                                 .frame(width: 40, height: 40)
@@ -33,21 +33,21 @@ public struct RepositoryRow: View {
                                 .opacity(0.2)
                         }
                         
-                        Text(viewStore.repo.name)
+                        Text(store.repo.name)
                             .font(.headline)
                         
                         Spacer()
                         
                         Button {
-                            viewStore.send(.starButtonTapped)
+                            store.send(.starButtonTapped)
                         } label: {
-                            Image(systemName: viewStore.repo.isStarred ? "heart.fill" : "heart")
+                            Image(systemName: store.repo.isStarred ? "heart.fill" : "heart")
                                 .foregroundColor(.yellow)
                         }
                         .buttonStyle(.plain)
                     }
                     
-                    viewStore.repo.description.map(Text.init(_:))
+                    store.repo.description.map(Text.init(_:))
                         .lineLimit(2)
                 }
             }

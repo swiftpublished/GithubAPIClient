@@ -5,7 +5,9 @@
 //  Created by Muralidharan Kathiresan on 01/10/23.
 //
 
-public struct RepositoryListFeature: Reducer {
+@Reducer
+public struct RepositoryListFeature {
+    @ObservableState
     public struct State: Equatable {
         public var repos: IdentifiedArrayOf<RepositoryRowFeature.State>
         public var isLoading: Bool

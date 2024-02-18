@@ -13,14 +13,14 @@ public struct RepositoryList: View {
     }
     
     public var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            if viewStore.isLoading {
+        WithPerceptionTracking {
+            if store.isLoading {
                 ProgressView()
                     .onAppear {
                         store.send(.fetchRepos)
                     }
             } else {
-                if let errorMessage = viewStore.errorMessage {
+                if let errorMessage = store.errorMessage {
                     Text(errorMessage)
                         .padding(.horizontal, 16)
                         .foregroundColor(.secondary)

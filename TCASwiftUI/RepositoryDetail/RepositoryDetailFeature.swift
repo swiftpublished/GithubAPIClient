@@ -5,7 +5,9 @@
 //  Created by Muralidharan Kathiresan on 01/10/23.
 //
 
-public struct RepositoryDetailFeature: Reducer {
+@Reducer
+public struct RepositoryDetailFeature {
+    @ObservableState
     public struct State: Equatable {
         var repo: Repository
     }

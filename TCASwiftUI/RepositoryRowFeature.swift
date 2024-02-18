@@ -5,7 +5,9 @@
 //  Created by Muralidharan Kathiresan on 01/10/23.
 //
 
-public struct RepositoryRowFeature: Reducer {
+@Reducer
+public struct RepositoryRowFeature {
+    @ObservableState
     public struct State: Equatable, Identifiable {
         public var id: Int { repo.id }
         
