@@ -36,7 +36,7 @@ public struct AppFeature {
         /// then the scoped child reducer would not be able to react to that action. That can cause subtle
         /// bugs, and so we show a runtime warning in that case, and cause test failures.
         ///
-        Scope(state: \.repositoryList, action: /Action.repositoryList) {
+        Scope(state: \.repositoryList, action: \.repositoryList) {
             RepositoryListFeature()
         }
         
@@ -59,7 +59,9 @@ public struct AppFeature {
         }
     }
     
+    @Reducer
     public struct Path: Reducer {
+        @ObservableState
         public enum State: Equatable {
             case repositoryDetail(RepositoryDetailFeature.State)
         }
@@ -69,7 +71,7 @@ public struct AppFeature {
         }
         
         public var body: some Reducer<State, Action> {
-            Scope(state: /State.repositoryDetail, action: /Action.repositoryDetail) {
+            Scope(state: \.repositoryDetail, action: \.repositoryDetail) {
                 RepositoryDetailFeature()
             }
         }

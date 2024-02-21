@@ -6,7 +6,7 @@
 //
 
 public struct RepositoryList: View {
-    let store: StoreOf<RepositoryListFeature>
+    @Perception.Bindable var store: StoreOf<RepositoryListFeature>
     
     public init(store: StoreOf<RepositoryListFeature>) {
         self.store = store
@@ -29,7 +29,7 @@ public struct RepositoryList: View {
                         ForEachStore(
                             store.scope(
                                 state: \.repos,
-                                action: RepositoryListFeature.Action.repo
+                                action: \.repo
                             )
                         ) { store in
                             RepositoryRow(store: store)

@@ -6,7 +6,7 @@
 //
 
 public struct RepositoryRow: View {
-    let store: StoreOf<RepositoryRowFeature>
+    @Perception.Bindable var store: StoreOf<RepositoryRowFeature>
     
     public init(store: StoreOf<RepositoryRowFeature>) {
         self.store = store
