@@ -58,7 +58,7 @@ public struct RepositoryRow: View {
 #Preview {
     RepositoryRow(
         store: .init(
-            initialState: .init(repo: Repository.testData()),
+            initialState: .init(repo: .testData()),
             reducer: { RepositoryRowFeature() }
         )
     )

@@ -86,7 +86,7 @@ public struct RepositoryDetail: View {
 #Preview {
     RepositoryDetail(
         store: .init(
-            initialState: .init(repo: Repository.testData()),
+            initialState: .init(repo: .testData()),
             reducer: { RepositoryDetailFeature() }
         )
     )

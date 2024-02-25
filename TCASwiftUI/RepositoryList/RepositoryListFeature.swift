@@ -26,8 +26,7 @@ public struct RepositoryListFeature {
     public enum Action: Equatable {
         case fetchRepos
         case reposResponse(TaskResult<Repositories>)
-        
-        case repo(id: RepositoryRowFeature.State.ID, action: RepositoryRowFeature.Action)
+        case repos(IdentifiedActionOf<RepositoryRowFeature>)
     }
     
     @Dependency(\.repositoryClient) var repositoryClient
@@ -59,11 +58,11 @@ public struct RepositoryListFeature {
                 state.errorMessage = error.localizedDescription
                 return .none
                 
-            case .repo:
+            case .repos:
                 return .none
             }
         }
-        .forEach(\.repos, action: /Action.repo(id:action:)) {
+        .forEach(\.repos, action: \.repos) {
             RepositoryRowFeature()
         }
     }
