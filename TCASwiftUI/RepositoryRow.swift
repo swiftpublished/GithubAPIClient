@@ -54,3 +54,12 @@ public struct RepositoryRow: View {
         }
     }
 }
+
+#Preview {
+    RepositoryRow(
+        store: .init(
+            initialState: .init(repo: Repository.testData()),
+            reducer: { RepositoryRowFeature() }
+        )
+    )
+}

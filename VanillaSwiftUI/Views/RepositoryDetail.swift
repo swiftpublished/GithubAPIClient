@@ -76,3 +76,9 @@ struct RepositoryDetail: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
+
+#Preview {
+    RepositoryDetail(
+        repo: .constant(Repository.testData())
+    )
+}

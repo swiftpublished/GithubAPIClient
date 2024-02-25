@@ -40,3 +40,7 @@ struct RepositoryList: View {
         )
     }
 }
+
+#Preview {
+    RepositoryList(repos: .constant(Repositories.testData()))
+}

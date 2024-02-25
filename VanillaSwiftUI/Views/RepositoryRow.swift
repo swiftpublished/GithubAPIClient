@@ -42,3 +42,9 @@ struct RepositoryRow: View {
         }
     }
 }
+
+#Preview {
+    RepositoryRow(
+        repo: .constant(Repository.testData())
+    )
+}
