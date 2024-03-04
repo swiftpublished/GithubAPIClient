@@ -37,6 +37,21 @@ public struct AppFeature {
         Scope(state: \.repositoryList, action: \.repositoryList) {
             RepositoryListFeature()
         }
+
+        Reduce<State, Action> { state, action in
+            switch action {
+            case let .path(.element(id: id, action: .repositoryDetail(.starButtonTapped))):
+                guard case .some(.repositoryDetail(let detailState)) = state.path[id: id] else {
+                    return .none
+                }
+
+                state.repositoryList.rows[id: detailState.repo.id]?.repo = detailState.repo
+                return .none
+
+            case .repositoryList, .path:
+                return .none
+            }
+        }
         .forEach(\.path, action: \.path)
     }
 }
