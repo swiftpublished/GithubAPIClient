@@ -7,31 +7,24 @@
 
 public struct RepositoryList: View {
     let store: StoreOf<RepositoryListFeature>
-    
+
     public init(store: StoreOf<RepositoryListFeature>) {
         self.store = store
     }
-    
+
     public var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            if viewStore.isLoading {
+        WithPerceptionTracking {
+            if store.isLoading {
                 ProgressView()
-                    .onAppear {
-                        store.send(.fetchRepos)
-                    }
+                    .onAppear { store.send(.fetchRepos) }
             } else {
-                if let errorMessage = viewStore.errorMessage {
+                if let errorMessage = store.errorMessage {
                     Text(errorMessage)
                         .padding(.horizontal, 16)
                         .foregroundColor(.secondary)
                 } else {
                     List {
-                        ForEachStore(
-                            store.scope(
-                                state: \.repos,
-                                action: RepositoryListFeature.Action.repo
-                            )
-                        ) { store in
+                        ForEach(store.scope(state: \.rows, action: \.rows)) { store in
                             RepositoryRow(store: store)
                         }
                     }

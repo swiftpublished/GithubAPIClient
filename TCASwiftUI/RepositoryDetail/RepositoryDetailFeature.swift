@@ -5,12 +5,14 @@
 //  Created by Muralidharan Kathiresan on 01/10/23.
 //
 
-public struct RepositoryDetailFeature: Reducer {
-    public struct State: Equatable {
+@Reducer
+public struct RepositoryDetailFeature {
+    @ObservableState
+    public struct State {
         var repo: Repository
     }
     
-    public enum Action: Equatable {
+    public enum Action {
         case starButtonTapped
     }
     
