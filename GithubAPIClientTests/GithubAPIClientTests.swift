@@ -7,6 +7,8 @@
 
 import XCTest
 @testable import GithubAPIClient
+@testable import TCASwiftUI
+@testable import Core
 
 @MainActor
 final class GitHubApiClientTests: XCTestCase {
@@ -27,13 +29,10 @@ final class GitHubApiClientTests: XCTestCase {
             dependencies.repositoryClient.repos = { [repo] }
         }
         
-        await store.send(.fetchRepos)
-        
-        await store.receive(.reposResponse(.success([repo]))) { state in
+        await store.send(\.fetchRepos)
+        await store.receive(\.reposResponse.success) { state in
             state.isLoading = false
-            state.repos = [
-                RepositoryRowFeature.State(repo: repo)
-            ]
+            state.rows = [ RepositoryRowFeature.State(repo: repo) ]
         }
     }
     
@@ -49,9 +48,8 @@ final class GitHubApiClientTests: XCTestCase {
             dependencies.repositoryClient.repos = { throw RepoError() }
         }
         
-        await store.send(.fetchRepos)
-        
-        await store.receive(.reposResponse(.failure(error))) { state in
+        await store.send(\.fetchRepos)
+        await store.receive(\.reposResponse.failure) { state in
             state.isLoading = false
             state.errorMessage = "Test Failure"
         }
@@ -80,4 +78,5 @@ final class GitHubApiClientTests: XCTestCase {
             state.repos[id: id]?.repo.isStarred = true
         }
     }
+
 }

@@ -7,7 +7,7 @@
 
 public typealias Repositories = [Repository]
 
-public struct Repository: Codable, Hashable {
+public struct Repository: Codable, Hashable, Equatable {
     public let id: Int
     public let name: String
     public let owner: Owner
@@ -50,7 +50,7 @@ public struct Repository: Codable, Hashable {
     }
 }
 
-public struct Owner: Codable, Hashable {
+public struct Owner: Codable, Hashable, Equatable {
     public let login: String
     public let avatarURL: String
 

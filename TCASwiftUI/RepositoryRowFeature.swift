@@ -8,7 +8,7 @@
 @Reducer
 public struct RepositoryRowFeature {
     @ObservableState
-    public struct State: Identifiable {
+    public struct State: Identifiable, Equatable {
         public var id: Int { repo.id }
         
         var repo: Repository
