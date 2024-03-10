@@ -52,16 +52,14 @@ public struct Repository: Codable, Hashable {
 
 public struct Owner: Codable, Hashable {
     public let login: String
-    public let avatarURL: String
+    public let avatarURL: String = "https://avatars.githubusercontent.com/u/\(Int.random(in: 1...1000))"
 
     public init(login: String, avatarURL: String) {
         self.login = login
-        self.avatarURL = avatarURL
     }
     
     enum CodingKeys: String, CodingKey {
         case login
-        case avatarURL = "avatar_url"
     }
 }
 
