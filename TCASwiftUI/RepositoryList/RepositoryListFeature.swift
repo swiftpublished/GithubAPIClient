@@ -23,22 +23,11 @@ public struct RepositoryListFeature {
         }
     }
 
-    public enum Action: Equatable {
+    public enum Action {
         case fetchRepos
         case reposResponse(Result<Repositories, Error>)
 
         case rows(IdentifiedActionOf<RepositoryRowFeature>)
-        
-        public static func == (lhs: RepositoryListFeature.Action, rhs: RepositoryListFeature.Action) -> Bool {
-            switch (lhs, rhs) {
-            case (.fetchRepos, .fetchRepos):
-                return true
-            case (.reposResponse, .reposResponse):
-                return true
-            default:
-                return false
-            }
-        }
     }
 
     @Dependency(\.repositoryClient) var repositoryClient
