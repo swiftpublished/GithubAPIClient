@@ -4,14 +4,8 @@
 //
 //  Created by Muralidharan Kathiresan on 01/10/23.
 //
-
 @Reducer
 public struct AppFeature {
-    @Reducer
-    public enum Path {
-        case repositoryDetail(RepositoryDetailFeature)
-    }
-
     @ObservableState
     public struct State {
         var repositoryList: RepositoryListFeature.State
@@ -53,5 +47,12 @@ public struct AppFeature {
             }
         }
         .forEach(\.path, action: \.path)
+    }
+}
+
+extension AppFeature {
+    @Reducer
+    public enum Path {
+        case repositoryDetail(RepositoryDetailFeature)
     }
 }
